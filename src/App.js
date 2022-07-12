@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import UserForm from './components/Form/UserForm';
+import Modal from './components/UI/Modal/Modal';
+import UsersList from './components/UserList/UsersList';
 
 function App() {
+   const usersList = [];
+   const [users, setUsers] = useState(usersList);
+   const [errorMsg, setErrorMsg] = useState('');
+   const [isActive, setIsActive] = useState(false);
+
+   const addUserData = (user) => {
+      setUsers((previousUsers) => {
+         return [user, ...previousUsers];
+      });
+   };
+   const openModal = (message) => {
+      setErrorMsg(message);
+      setIsActive(true);
+   };
+   const closeModal = () => {
+      setIsActive(false);
+   };
    return (
       <div>
-         {/* 1) нужен компонент формы
-				2) нужен компонент кнопки
-				3) нужен компонент юзер листа
-				4) нужен компонент юзер айтема
-				5) нужен компонент модалки */}
+         <UserForm onFormSubmit={addUserData} onEmptyInputs={openModal} />
+         <UsersList users={users} />
+         {isActive && <Modal message={errorMsg} onCloseModal={closeModal} />}
       </div>
    );
 }
