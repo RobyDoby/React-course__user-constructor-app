@@ -22,6 +22,11 @@ const UserForm = (props) => {
          name: enteredName,
          age: enteredAge,
       };
+      if (enteredName.length === 0 && enteredAge.length === 0) {
+         message = 'Please enter a name and age';
+         props.onEmptyInputs(message);
+         return;
+      }
       if (enteredName.length === 0) {
          message = 'Please enter a name';
          props.onEmptyInputs(message);
