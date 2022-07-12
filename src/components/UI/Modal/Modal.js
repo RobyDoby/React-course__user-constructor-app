@@ -8,9 +8,11 @@ const Modal = (props) => {
    return (
       <div className={styles.modal}>
          <div className={styles['modal-backdrop']} onClick={closeModalHandler}>
-            <div className={styles['modal-content']}>
-               <h2 className={styles['modal-title']}>Invalid Input</h2>
-               <p className={styles['modal-message']}>{props.message}</p>
+            <div className={styles['modal-content-container']}>
+               <div className={styles['modal-content']} onClick={(e) => e.stopPropagation()}>
+                  <h2 className={styles['modal-title']}>Invalid Input</h2>
+                  <p className={styles['modal-message']}>{props.message}</p>
+               </div>
                <div className={styles['modal-btn']}>
                   <Button onClick={closeModalHandler}>Close Modal</Button>
                </div>
