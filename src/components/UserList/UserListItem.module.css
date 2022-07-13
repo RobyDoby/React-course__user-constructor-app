@@ -1,4 +1,17 @@
 .user-list-item {
    border: 1px solid #333;
    padding: 0.5rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+.user-list-item > button {
+   font: inherit;
+   padding: 0.5rem 1.5rem;
+   border: 1px solid #580a3e;
+   color: white;
+   background: #580a3e;
+   box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+   cursor: pointer;
+   transition: all 200ms ease-in-out;
 }
