@@ -11,10 +11,10 @@ const UsersList = (props) => {
          <ul className={styles['users-list']}>
             {props.users.length === 0 && <li>No Users Found</li>}
             {props.users.length > 0 &&
-               props.users.map((user, index) => {
+               props.users.map((user) => {
                   return (
                      <UserListItem
-                        key={index}
+                        key={user.id}
                         userName={user.name}
                         userAge={user.age}
                         id={user.id}
