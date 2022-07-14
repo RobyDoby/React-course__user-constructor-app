@@ -32,16 +32,16 @@ const UserForm = (props) => {
    };
    const formValidation = () => {
       let message;
-      if (enteredName.length === 0 && enteredAge.length === 0) {
+      if (enteredName.trim().length === 0 && enteredAge.trim().length === 0) {
          message = 'Please enter a name and age';
          return { status: false, msg: message };
       }
-      if (enteredName.length === 0) {
+      if (enteredName.trim().length === 0) {
          message = 'Please enter a name';
          props.onEmptyInputs(message);
          return { status: false, msg: message };
       }
-      if (enteredAge.length === 0) {
+      if (enteredAge.trim().length === 0) {
          message = 'Please enter age';
          props.onEmptyInputs(message);
          return { status: false, msg: message };
