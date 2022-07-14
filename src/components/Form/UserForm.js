@@ -16,35 +16,42 @@ const UserForm = (props) => {
 
    const forwardUserData = (e) => {
       e.preventDefault();
-      let message;
 
       let userData = {
          name: enteredName,
          age: enteredAge,
       };
-      if (enteredName.length === 0 && enteredAge.length === 0) {
-         message = 'Please enter a name and age';
-         props.onEmptyInputs(message);
-         return;
-      }
-      if (enteredName.length === 0) {
-         message = 'Please enter a name';
-         props.onEmptyInputs(message);
-         return;
-      }
-      if (enteredAge.length === 0) {
-         message = 'Please enter age';
-         props.onEmptyInputs(message);
-         return;
-      }
-      if (enteredAge < 0) {
-         message = 'Age cannot be less than 0';
-         props.onEmptyInputs(message);
+      const isValid = formValidation();
+      if (!isValid.status) {
+         props.onEmptyInputs(isValid.msg);
          return;
       }
       props.onFormSubmit(userData);
       setEnteredName('');
       setEnteredAge('');
+   };
+   const formValidation = () => {
+      let message;
+      if (enteredName.length === 0 && enteredAge.length === 0) {
+         message = 'Please enter a name and age';
+         return { status: false, msg: message };
+      }
+      if (enteredName.length === 0) {
+         message = 'Please enter a name';
+         props.onEmptyInputs(message);
+         return { status: false, msg: message };
+      }
+      if (enteredAge.length === 0) {
+         message = 'Please enter age';
+         props.onEmptyInputs(message);
+         return { status: false, msg: message };
+      }
+      if (enteredAge < 0) {
+         message = 'Age cannot be less than 0';
+         props.onEmptyInputs(message);
+         return { status: false, msg: message };
+      }
+      return { status: true };
    };
    return (
       <Card>
